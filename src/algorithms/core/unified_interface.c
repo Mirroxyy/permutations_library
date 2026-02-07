@@ -1,25 +1,13 @@
-#include "permutation_types.h"
-#include "recursive_algorithms.h"
-#include "iterative_algorithms.h"
-#include "optimized_algorithms.h"
 #include <stdio.h>
+#include "../../include/permutations.h"
+// #include "../../include/recursive_algorithms.h"
+// #include "../../include/iterative_algorithms.h"
+// #include "../../include/optimized_algorithms.h"
 
-typedef enum{
-    ALGO_BACKTRACK = 1,
-    ALGO_RECURSIVE_SWAP,
-    ALGO_NARAYANA,
-    ALGO_FACTORIAL_SYSTEM,
-    ALGO_JOHNSON_TROTTER,
-    ALGO_HEAP,
-    ALGO_MINIMAL_CHANGE,
-    ALGO_CYCLE_LEADER,
-    ALGO_BINARY_MASKS,
-    ALGO_PSEUDO_LEXICOGRAPHIC
-} permutation_algorithm_t;
- 
 void generate_permutations(permutation_algorithm_t algo,
-                            int arrp[], int n,
-                            void (*callback)(int perm[], int n)) {
+                            int arr[], int n,
+                            permutation_callback_t callback) {
+                                
     if (arr == NULL){
         printf("Error: Передан пустой указатель на массив!\n");
         return;

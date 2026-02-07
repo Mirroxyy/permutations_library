@@ -1,1 +1,59 @@
+#include <stdio.h>
+#include <time.h>
+#include <string.h>
+#include "../../include/permutations.h"
 
+static unsigned long long g_counter = 0;
+
+// Callback для подсчета количества перестановок (без вывода)
+void counter_callback(int perm[], int n) {
+    (void)perm;
+    (void)n;
+    g_counter++;
+}
+
+// Вспомогательная функция для получения имени алгоритма
+const char* get_algo_name(permutation_algorithm_t algo) {
+    switch(algo) {
+        case ALGO_BACKTRACK: return "Backtrack";
+        case ALGO_RECURSIVE_SWAP: return "Recursive Swap";
+        case ALGO_NARAYANA: return "Narayana";
+        case ALGO_FACTORIAL_SYSTEM: return "Factorial System";
+        case ALGO_JOHNSON_TROTTER: return "Johnson-Trotter";
+        case ALGO_HEAP: return "Heap's Algorithm";
+        case ALGO_MINIMAL_CHANGE: return "Minimal Change";
+        case ALGO_CYCLE_LEADER: return "Cycle Leader";
+        case ALGO_BINARY_MASKS: return "Binary Masks";
+        case ALGO_PSEUDO_LEXICOGRAPHIC: return "Pseudo Lexicographic";
+        default: return "Unknown Algorithm";
+    }
+}
+
+// Основная функция бенчмаркинга
+benchmark_result_t benchmark_algorithm(permutation_algorithm_t algo, 
+                                       int arr[], int n, 
+                                       int iterations) {
+    benchmark_result_t result;
+    double total_time = 0.0;
+    
+    // Сохраняем имя алгоритма
+    strncpy(result.algorithm_name, get_algo_name(algo), 49);
+    result.algorithm_name[49] = '\0';
+
+    for (int i = 0; i < iterations; i++) {
+        g_counter = 0;
+
+        clock_t start = clock();
+        
+        generate_permutations(algo, arr, n, counter_callback);
+        
+        clock_t end = clock();
+
+        total_time += (double)(end - start) / CLOCKS_PER_SEC;
+    }
+
+    result.time_seconds = total_time / iterations; // Среднее время
+    result.count = g_counter;
+
+    return result;
+}
