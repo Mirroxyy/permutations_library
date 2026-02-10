@@ -1,5 +1,3 @@
-#include <stdlib.h>
-
 #include "permutations.h"
 
 // convert lexicographic index to inversion table

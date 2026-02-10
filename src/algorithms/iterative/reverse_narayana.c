@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <stdbool.h>
-
 #include "permutations.h"
 
 // find pivot index for previous permutation (reverse Narayana)

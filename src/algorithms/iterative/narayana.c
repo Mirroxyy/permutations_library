@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <stdbool.h>
-
 #include "permutations.h"
 
 // find the rightmost position I where arr[i] < arr[i+1]

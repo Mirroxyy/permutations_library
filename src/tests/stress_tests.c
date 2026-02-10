@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 #include "permutations.h"
 
 // 1. Проверка на утечки (многократное создание/удаление)

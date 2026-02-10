@@ -1,5 +1,3 @@
-#include <stddef.h>
-
 #include "permutations.h" 
 
 permutation_algorithm_t select_optimal_algorithm(int n, constraint_set_t* constraints) {

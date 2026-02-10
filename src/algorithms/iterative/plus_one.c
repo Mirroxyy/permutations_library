@@ -1,5 +1,3 @@
-#include <stdlib.h>
-
 #include "permutations.h"
 
 // build permutation from factoradic indices
