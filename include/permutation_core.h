@@ -41,8 +41,7 @@ bool core_verify_algorithm(permutation_algorithm_t algo, int n);
 // ВИЗУАЛИЗАЦИЯ
 typedef void (*step_callback_t)(const char* description, 
                                 int current_perm[], 
-                                int n, 
-                                int step_number);
+                                int n);
 
 void visualize_algorithm(permutation_algorithm_t algo,
                          int arr[], int n,
