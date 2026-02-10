@@ -12,7 +12,7 @@ void permutations_recursive_lexicographic(int arr[], int n, memory_pool_t* pool,
     memcpy(sorted_arr, arr, n * sizeof(int));
     qsort(sorted_arr, n, sizeof(int), compare_ints);
 
-    // 2. Запускаем стандартный бэктрекинг (он сохранит порядок)
+    // 2. Запускаем стандартный бэктрекинг
     permutations_backtrack(sorted_arr, n, pool, callback);
 
     pool->offset = initial_offset;

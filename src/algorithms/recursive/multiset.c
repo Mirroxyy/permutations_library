@@ -12,8 +12,6 @@ static void multiset_helper(int arr[], int n, bool used[], int current[], int de
     for (int i = 0; i < n; i++) {
         if (used[i]) continue;
         
-        // Пропускаем дубликаты: если текущий элемент равен предыдущему 
-        // и предыдущий НЕ был использован в этой ветке - будет дубль.
         if (i > 0 && arr[i] == arr[i-1] && !used[i-1]) continue;
 
         used[i] = true;
