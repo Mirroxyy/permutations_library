@@ -30,8 +30,8 @@ typedef struct {
     size_t memory_peak;       // <--- ДОБАВЬ ЭТО (раз уж мы сделали пул памяти!)
 } benchmark_result_t;
 
-
+/*
 // Интерфейс для генерации перестановок с помощью различных алгоритмов
 typedef void (*permutation_callback_t)(int perm[], int n);
-
+*/
 #endif

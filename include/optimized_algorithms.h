@@ -6,8 +6,10 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+/*
 // Типы данных
 typedef void (*perm_callback_t)(int perm[], int n);
+*/
 
 typedef struct {
     bool use_cache_optimization;
@@ -26,12 +28,6 @@ typedef struct {
     } \
 } while(0)
 
-// Функции управления памятью
-void pool_init(size_t max_bytes);
-void* pool_alloc(size_t size);
-void pool_reset(void);
-void pool_destroy(void);
-size_t pool_get_peak_memory(void);
 
 // Оптимизированные алгоритмы
 void permutations_johnson_trotter_opt(int arr[], int n, perm_callback_t callback);

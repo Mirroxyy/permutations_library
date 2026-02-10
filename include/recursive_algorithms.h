@@ -21,6 +21,8 @@ void permutations_with_constraints(int arr[], int n,
                                     bool (*constraint)(int[], int, int, void*),
                                     void* constraint_data,
                                     void (*callback)(int[], int));
+bool pos_constraint(int partial[], int k, int next, void* data);
+bool rel_constraint(int partial[], int k, int next, void* data);
 
 //Рекурсивный алгоритм перестановки с отслеживанием повторения
 void multiset_permutations(int arr[], int n, memory_pool_t* pool, void (*callback)(int[], int));

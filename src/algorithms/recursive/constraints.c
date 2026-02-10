@@ -44,3 +44,27 @@ void permutations_with_constraints(int arr[], int n,
     pool->offset = initial_offset;
 }
 
+// Позиционные (элемент i не может быть на позиции j)
+bool pos_constraint(int partial[], int k, int next, void* data) {
+    ConstraintRules* rules = (ConstraintRules*)data;
+    if (rules->forbidden_map[k][0] == 1 && next == rules->forbidden_map[k][1]){
+        return false;
+    }
+    return true;
+}
+
+//Относительные (элемент x должен быть перед элементом y)
+
+bool rel_constraint(int partial[], int k, int next, void* data){
+    ConstraintRules* rules = (ConstraintRules*)data;
+    int bef_var = rules->must_follow[0];
+    int aft_const = rules->must_follow[1];
+    bool f = false;
+    if (next == bef_var){
+        for (int i = 0; i < k; i ++){
+            if (partial[i] == aft_const) f = true;
+    }
+        if (f == true) return false;
+    }
+    return true;
+}

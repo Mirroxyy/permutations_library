@@ -1,7 +1,7 @@
 #include "permutations.h"
 
 // Оптимизированная версия алгоритма минимальных изменений
-void permutations_minimal_change_opt(int arr[], int n, perm_callback_t callback) {
+void permutations_minimal_change_opt(int arr[], int n,  void (*callback)(int[], int)) {
     if (n <= 1) {
         if (n == 1) callback(arr, n);
         return;

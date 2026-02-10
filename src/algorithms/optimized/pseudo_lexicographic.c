@@ -1,7 +1,7 @@
 #include "permutations.h"
 
 // Оптимизированная гибридная версия
-void permutations_hybrid_opt(int arr[], int n, perm_callback_t callback) {
+void permutations_hybrid_opt(int arr[], int n,  void (*callback)(int[], int)) {
     if (n <= 0) return;
     
     AlgorithmConfig config = get_algorithm_config();

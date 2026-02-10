@@ -31,3 +31,8 @@ void request_stop() {
     stop_generation = true;
 }
 
+void print_perm(int perm[], int n) {
+    printf("[");
+    for (int i = 0; i < n; i++) printf("%d%s", perm[i], i == n - 1 ? "" : ", ");
+    printf("]\n");
+}

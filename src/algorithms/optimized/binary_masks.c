@@ -2,7 +2,7 @@
 
 // Рекурсивная функция для битовых масок
 static void generate_masks(int pos, uint32_t mask, int arr[], int n, 
-                          int *current, perm_callback_t callback) {
+                          int *current,  void (*callback)(int[], int)) {
     if (pos == n) {
         callback(current, n);
         return;
@@ -17,7 +17,7 @@ static void generate_masks(int pos, uint32_t mask, int arr[], int n,
 }
 
 // Оптимизированная версия алгоритма двоичных масок
-void permutations_binary_masks_opt(int arr[], int n, perm_callback_t callback) {
+void permutations_binary_masks_opt(int arr[], int n,  void (*callback)(int[], int)) {
     if (n > BIT_MASK_LIMIT|| n <= 0) return;
     
     int *current = (int*)pool_alloc(n * sizeof(int));

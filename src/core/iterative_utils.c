@@ -1,10 +1,10 @@
 #include "iterative_utils.h"
 
-void swap(int *a,int *b) {
+/*void swap(int *a,int *b) {
     int temp = *a;
     *a = *b;
     *b = temp;
-}
+}*/
 
 void bubble_sort(int arr[], int size) {
     for (int i = 0; i < size - 1; i++)
@@ -34,7 +34,7 @@ long factorial(int n) {
 }
 
 
-void printARR(int arr[], int n){
+/*void printARR(int arr[], int n){
     for (int h = 0; h < n; h++) 
         printf("%d ", arr[h]);
 
@@ -44,3 +44,4 @@ void printARR(int arr[], int n){
 void print_callback(int perm[], int n) {
     printARR(perm, n);
 }
+*/

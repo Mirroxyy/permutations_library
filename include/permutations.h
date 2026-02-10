@@ -28,5 +28,13 @@ void generate_permutations(permutation_algorithm_t algo,
                            permutation_callback_t callback);
 
 
+int compare_ints(const void* a, const void* b); //Функция для qsort
+
+//Функции для досрочной остановки рекурсивного алгоритма
+void reset_stop_flag();
+void request_stop();
+
+void print_perm(int perm[], int n) //Функция для вывода массива
+
 #endif
 
