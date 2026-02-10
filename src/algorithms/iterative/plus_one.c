@@ -1,13 +1,13 @@
+#include <stdlib.h>
 
-#include "iterative_algorithms.h"
-#include "iterative_utils.h"
+#include "permutations.h"
 
 // build permutation from factoradic indices
 void build_permutation_from_indices(
     int sorted[], int indices[],
     int n, int result[], int temp[]){
 
-    copyARR(sorted,temp,n);
+    copyARR(sorted, temp, n);
     int size=n;
 
     for(int i = 0; i < n; i++){
@@ -46,19 +46,19 @@ void permutations_plus_one(int arr[], int n,
         return;
     
     // sorted input copy
-    int *sorted=malloc(n*sizeof(int));
+    int *sorted = (int*)pool_alloc(n * sizeof(int));
     // factoradic indices
-    int *indices=malloc(n*sizeof(int));
+    int *indices = (int*)pool_alloc(n * sizeof(int));
     // result permutation
-    int *result=malloc(n*sizeof(int));
+    int *result = (int*)pool_alloc(n * sizeof(int));
     // temporary buffer
-    int *temp=malloc(n*sizeof(int));
+    int *temp = (int*)pool_alloc(n * sizeof(int));
 
     if(!sorted || !indices || !result || !temp)
         return;
 
-    copyARR(arr,sorted,n);
-    bubble_sort(sorted,n);
+    copyARR(arr, sorted, n);
+    bubble_sort(sorted, n);
 
     for(int i = 0; i < n; i++)
         // initialize factoradic digits
@@ -75,10 +75,4 @@ void permutations_plus_one(int arr[], int n,
         // move to next index
         increment_factoradic(indices, n);
     }
-
-    free(sorted);
-    free(indices);
-    free(result);
-    free(temp);
 }
-

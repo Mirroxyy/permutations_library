@@ -1,7 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
-#include "../../include/permutations.h"
+
+#include "permutations.h"
 
 typedef struct {
     uint8_t* start_ptr;

@@ -1,6 +1,7 @@
+#include <stdlib.h>
+#include <stdbool.h>
 
-#include "iterative_algorithms.h"
-#include "iterative_utils.h"
+#include "permutations.h"
 
 // find pivot index for previous permutation (reverse Narayana)
 int findI_reverse(int arr[], int n){
@@ -44,7 +45,7 @@ void permutations_reverse_narayana(
     if(!callback) return;
 
     // allocate working copy
-    int *work=malloc(n*sizeof(int));
+    int *work = (int*)pool_alloc(n * sizeof(int));
     if(!work)
         return;
 
@@ -58,7 +59,4 @@ void permutations_reverse_narayana(
     while(prev_permutation_narayana(work, n))
         // output each permutation
         callback(work, n);
-
-    free(work);
 }
-

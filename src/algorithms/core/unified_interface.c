@@ -1,8 +1,6 @@
 #include <stdio.h>
-#include "../../include/permutations.h"
-// #include "../../include/recursive_algorithms.h"
-// #include "../../include/iterative_algorithms.h"
-// #include "../../include/optimized_algorithms.h"
+
+#include "permutations.h"
 
 void generate_permutations(permutation_algorithm_t algo,
                             int arr[], int n,

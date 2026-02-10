@@ -1,13 +1,13 @@
+#include <stdlib.h>
 
-#include "iterative_algorithms.h"
-#include "iterative_utils.h"
+#include "permutations.h"
 
 // convert lexicographic index to inversion table
 void index_to_inversion_table(long index, int inv[], int n){
     // iterate positions
     for(int i = 0; i < n; i++){
         // compute inversion value
-        inv[i] = index%(n-i);
+        inv[i] = index % (n-i);
         // reduce index
         index /= (n-i);
     }
@@ -44,19 +44,19 @@ void permutations_inversion_table(int arr[],int n,
         return;
 
     // sorted working array    
-    int *sorted = malloc(n*sizeof(int));
+    int *sorted = (int*)pool_alloc(n * sizeof(int));
     // inversion table buffer
-    int *inv = malloc(n*sizeof(int));
+    int *inv = (int*)pool_alloc(n * sizeof(int));
     // result permutation buffer
-    int *result = malloc(n*sizeof(int));
+    int *result = (int*)pool_alloc(n * sizeof(int));
 
     if(!sorted || !inv || !result)
         return;
 
-    copyARR(arr,sorted,n);
-    bubble_sort(sorted,n);
+    copyARR(arr, sorted, n);
+    bubble_sort(sorted, n);
 
-    long total=factorial(n);
+    long total = factorial(n);
     
     // iterate all indices
     for(long i = 0; i < total; i++){
@@ -67,9 +67,4 @@ void permutations_inversion_table(int arr[],int n,
         // output permutation
         callback(result, n);
     }
-
-    free(sorted);
-    free(inv);
-    free(result);
 }
-

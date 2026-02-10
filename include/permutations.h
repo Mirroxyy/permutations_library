@@ -8,6 +8,7 @@
 #include "permutation_core.h"
 
 #include "iterative_algorithms.h"
+#include "iterative_utils.h"
 #include "recursive_algorithms.h" 
 #include "optimized_algorithms.h"
 

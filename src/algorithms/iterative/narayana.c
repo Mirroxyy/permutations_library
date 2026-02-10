@@ -1,6 +1,7 @@
+#include <stdlib.h>
+#include <stdbool.h>
 
-#include "iterative_algorithms.h"
-#include "iterative_utils.h"
+#include "permutations.h"
 
 // find the rightmost position I where arr[i] < arr[i+1]
 int findI(int arr[], int n) {
@@ -42,7 +43,7 @@ void permutation_narayana(int arr[],int n,
     if (!callback || n<=0)
         return;
 
-    int *work = malloc(n*sizeof(int));
+    int *work = (int*)pool_alloc(n * sizeof(int));
     
     if(!work)
         return;
@@ -53,6 +54,4 @@ void permutation_narayana(int arr[],int n,
     callback(work, n);
     while(next_permutation_narayana(work,n))
         callback(work,n);
-
-    free(work);
 }
