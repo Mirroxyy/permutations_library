@@ -1,5 +1,7 @@
 #include "permutations.h"
 
+static bool stop_generation = false;
+
 static void swap_helper(int arr[], int n, int depth, void (*callback)(int[], int)) {
     if (stop_generation) return;
 

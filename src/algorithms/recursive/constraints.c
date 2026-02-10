@@ -1,5 +1,7 @@
 #include "permutations.h"
 
+static bool stop_generation = false;
+
 static void constraint_helper(int arr[], int n, bool used[], int current[], int depth,
                              bool (*constraint)(int[], int, int, void*),
                              void* data, void (*callback)(int[], int)) {

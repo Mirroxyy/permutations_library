@@ -1,5 +1,7 @@
 #include "permutations.h"
 
+static bool stop_generation = false;
+
 void permutations_recursive_lexicographic(int arr[], int n, memory_pool_t* pool, void (*callback)(int[], int)) {
     if (n <= 0 || arr == NULL) return;
     

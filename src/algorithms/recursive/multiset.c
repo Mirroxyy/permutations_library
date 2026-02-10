@@ -1,5 +1,7 @@
 #include "permutations.h"
 
+static bool stop_generation = false;
+
 static void multiset_helper(int arr[], int n, bool used[], int current[], int depth, void (*callback)(int[], int)) {
     if (stop_generation) return;
     if (depth == n) {
