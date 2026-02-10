@@ -10,31 +10,25 @@ int arrays_equal(int a[], int b[], int n) {
 
 void test_factorial_system_functions() {
 
-    printf("==============================================\n");
-    printf("Тестирование алгоритма факториальной системы\n");
-    printf("==============================================\n");
-
-
-    // ============================================================
-    printf("\nТест 1: index_to_factorial_digits(index=4, n=3)\n");
+    printf("Testing factorial system algorithm\n");
+    
+    printf("\nTest 1: index_to_factorial_digits(index=4, n=3)\n");
 
     int digits[3];
     index_to_factorial_digits(4,3,digits);
 
-    printf("Получили digits: ");
+    printf("Received digits: ");
     printARR(digits,3);
 
-    printf("Проверяем диапазоны значений\n");
+    printf("Checking value ranges\n");
 
     assert(digits[0] >= 0 && digits[0] < 3);
     assert(digits[1] >= 0 && digits[1] < 2);
     assert(digits[2] >= 0 && digits[2] < 1);
 
-    printf("✓ Пройден\n");
+    printf("Passed\n");
 
-
-    // ============================================================
-    printf("\nТест 2: lehmer_to_permutation\n");
+    printf("\nTest 2: lehmer_to_permutation\n");
 
     int arr2[] = {10,20,30};
     int digits2[] = {0,1,0};
@@ -49,19 +43,17 @@ void test_factorial_system_functions() {
 
     lehmer_to_permutation(arr2,3,digits2,result2);
 
-    printf("Получили: ");
+    printf("Received: ");
     printARR(result2,3);
 
-    printf("Ожидали: ");
+    printf("Expected: ");
     printARR(expected2,3);
 
     assert(arrays_equal(result2,expected2,3));
 
-    printf("✓ Пройден\n");
+    printf("Passed\n");
 
-
-    // ============================================================
-    printf("\nТест 3: permutation_from_index\n");
+    printf("\nTest 3: permutation_from_index\n");
 
     int arr3[] = {1,2,3};
     int result3[3];
@@ -69,42 +61,38 @@ void test_factorial_system_functions() {
 
     bool ok = permutation_from_index(arr3,3,1,result3);
 
-    printf("Результат функции: %s\n", ok ? "true":"false");
+    printf("Function result: %s\n", ok ? "true":"false");
 
-    printf("Получили: ");
+    printf("Received: ");
     printARR(result3,3);
 
-    printf("Ожидали: ");
+    printf("Expected: ");
     printARR(expected3,3);
 
     assert(ok==true);
     assert(arrays_equal(result3,expected3,3));
 
-    printf("✓ Пройден\n");
+    printf("Passed\n");
 
-
-    // ============================================================
-    printf("\nТест 4: permutation_from_index выход за диапазон\n");
+    printf("\nTest 4: permutation_from_index out of range\n");
 
     int arr4[] = {1,2,3};
     int result4[3];
 
     bool ok2 = permutation_from_index(arr4,3,100,result4);
 
-    printf("Результат функции: %s\n", ok2 ? "true":"false");
-    printf("Ожидали: false\n");
+    printf("Function result: %s\n", ok2 ? "true":"false");
+    printf("Expected: false\n");
 
     assert(ok2==false);
 
-    printf("✓ Пройден\n");
+    printf("Passed\n");
 
-
-    // ============================================================
-    printf("\nТест 5: permutations_factorial_system [1,2,3]\n");
+    printf("\nTest 5: permutations_factorial_system [1,2,3]\n");
 
     int arr5[] = {1,2,3};
 
-    printf("Ожидали все 6 перестановок:\n");
+    printf("Expected all 6 permutations:\n");
     printf("1 2 3\n");
     printf("1 3 2\n");
     printf("2 1 3\n");
@@ -112,15 +100,13 @@ void test_factorial_system_functions() {
     printf("3 1 2\n");
     printf("3 2 1\n\n");
 
-    printf("Получили:\n");
+    printf("Received:\n");
     permutations_factorial_system(arr5,3,print_callback);
 
-    printf("✓ Визуально проверено\n");
+    printf("verified\n");
 
 
-    printf("\n==============================================\n");
-    printf("Все тесты завершены успешно!\n");
-    printf("==============================================\n");
+    printf("All tests completed successfully!\n");
 }
 
 int main() {

@@ -1,7 +1,6 @@
 #include "iterative_algorithms.h"
 #include "iterative_utils.h"
 
-
 int arrays_equal(int a[], int b[], int n) {
     for (int i = 0; i < n; i++)
         if (a[i] != b[i])
@@ -11,12 +10,9 @@ int arrays_equal(int a[], int b[], int n) {
 
 void test_plus_one_algorithm() {
 
-    printf("==============================================\n");
-    printf("Тестирование алгоритма Плюс-один\n");
-    printf("==============================================\n");
+    printf("Testing Plus-One algorithm\n");
 
-    // ============================================================
-    printf("\nТест 1: build_permutation_from_indices\n");
+    printf("\nTest 1: build_permutation_from_indices\n");
 
     int sorted1[]  = {1,2,3};
     int indices1[] = {0,0,0};
@@ -37,42 +33,40 @@ void test_plus_one_algorithm() {
         result1,
         temp1);
 
-    printf("Получили: ");
+    printf("Received: ");
     printARR(result1,3);
 
-    printf("Ожидали: ");
+    printf("Expected: ");
     printARR(expected1,3);
 
     assert(arrays_equal(result1,expected1,3));
 
-    printf("✓ Пройден\n");
+    printf("Passed\n");
 
 
-    // ============================================================
-    printf("\nТест 2: increment_factoradic\n");
+    printf("\nTest 2: increment_factoradic\n");
 
     int indices2[] = {0,0,0};
 
-    printf("Исходные индексы: ");
+    printf("Initial indices: ");
     printARR(indices2,3);
 
     increment_factoradic(indices2,3);
 
-    printf("После increment: ");
+    printf("After increment: ");
     printARR(indices2,3);
 
     int expected2[] = {0,1,0};
 
-    printf("Ожидали: ");
+    printf("Expected: ");
     printARR(expected2,3);
 
     assert(arrays_equal(indices2,expected2,3));
 
-    printf("✓ Пройден\n");
+    printf("Passed\n");
 
 
-    // ============================================================
-    printf("\nТест 3: build_permutation_from_indices сложный случай\n");
+    printf("\nTest 3: build_permutation_from_indices complex case\n");
 
     int sorted3[]  = {1,2,3};
     int indices3[] = {1,0,0};
@@ -93,23 +87,21 @@ void test_plus_one_algorithm() {
         result3,
         temp3);
 
-    printf("Получили: ");
+    printf("Received: ");
     printARR(result3,3);
 
-    printf("Ожидали: ");
+    printf("Expected: ");
     printARR(expected3,3);
 
     assert(arrays_equal(result3,expected3,3));
 
-    printf("✓ Пройден\n");
+    printf("Passed\n");
 
-
-    // ============================================================
-    printf("\nТест 4: permutations_plus_one [1,2,3]\n");
+    printf("\nTest 4: permutations_plus_one [1,2,3]\n");
 
     int arr4[] = {1,2,3};
 
-    printf("Ожидали перестановки:\n");
+    printf("Expected permutations:\n");
     printf("1 2 3\n");
     printf("1 3 2\n");
     printf("2 1 3\n");
@@ -117,28 +109,26 @@ void test_plus_one_algorithm() {
     printf("3 1 2\n");
     printf("3 2 1\n");
 
-    printf("\nПолучили:\n");
+
+    printf("\nReceived:\n");
 
     permutations_plus_one(arr4,3,print_callback);
 
-    printf("✓ Визуально проверено\n");
+    printf("✓ Visually verified\n");
 
 
-    // ============================================================
-    printf("\nТест 5: permutations_plus_one n=0\n");
+    printf("\nTest 5: permutations_plus_one n=0\n");
 
     int arr5[] = {};
 
-    printf("Пустой массив, ожидаем один callback\n");
+    printf("Empty array, expecting one callback\n");
 
     permutations_plus_one(arr5,0,print_callback);
 
-    printf("✓ Пройден\n");
+    printf("Passed\n");
 
 
-    printf("\n==============================================\n");
-    printf("Все тесты завершены успешно!\n");
-    printf("==============================================\n");
+    printf("All tests completed successfully!\n");
 }
 
 int main() {

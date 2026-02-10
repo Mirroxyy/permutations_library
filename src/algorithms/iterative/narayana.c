@@ -2,6 +2,7 @@
 #include "iterative_algorithms.h"
 #include "iterative_utils.h"
 
+// find the rightmost position I where arr[i] < arr[i+1]
 int findI(int arr[], int n) {
     for (int i = n-2; i >= 0; i--)
         if (arr[i] < arr[i+1])
@@ -9,6 +10,7 @@ int findI(int arr[], int n) {
     return -1;
 }
 
+// find element J greater than arr[I] from the right side
 int findJ(int arr[], int n, int I) {
     for (int j = n-1; j > I; j--)
         if (arr[j] > arr[I])
@@ -16,22 +18,34 @@ int findJ(int arr[], int n, int I) {
     return -1;
 }
 
+// generate next lexicographic permutation (Narayana algorithm)
 bool next_permutation_narayana(int arr[], int n) {
-    if (n < 2) return false;
+    if (n < 2) 
+        return false;
+
     int I = findI(arr, n);
-    if (I == -1) return false;
+
+    if (I == -1)
+        return false;
+
     int J = findJ(arr, n, I);
+
     swap(&arr[I], &arr[J]);
     reverseTail(arr, I+1, n-1);
+
     return true;
 }
 
+// generate all permutations using Narayana method
 void permutation_narayana(int arr[],int n,
                           void (*callback)(int perm[], int n)) {
-    if (!callback || n<=0) return;
+    if (!callback || n<=0)
+        return;
 
     int *work = malloc(n*sizeof(int));
-    if(!work) return;
+    
+    if(!work)
+        return;
 
     copyARR(arr, work, n);
     bubble_sort(work, n);
