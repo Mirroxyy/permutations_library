@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <stdbool.h>
-
 #include "permutations.h"
 
 // convert index into factorial number system digits

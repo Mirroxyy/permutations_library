@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include "permutations.h"
 
 void generate_permutations(permutation_algorithm_t algo,

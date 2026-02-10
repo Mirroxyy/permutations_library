@@ -1,9 +1,6 @@
 #ifndef PERMUTATIONS_H
 #define PERMUTATIONS_H
 
-#include <stddef.h> 
-#include <stdbool.h> 
-
 #include "permutation_types.h"
 #include "permutation_core.h"
 

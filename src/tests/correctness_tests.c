@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "permutations.h"
 
 // Макрос для красивого вывода

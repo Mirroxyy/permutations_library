@@ -1,7 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdint.h>
-
 #include "permutations.h"
 
 static memory_pool_t g_pool = {NULL, 0, 0, 0};

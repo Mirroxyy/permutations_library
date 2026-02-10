@@ -1,5 +1,4 @@
-#include "iterative_algorithms.h"
-#include "iterative_utils.h"
+#include "permutations.h"
 
 int arrays_equal(int a[], int b[], int n) {
     for (int i = 0; i < n; i++)

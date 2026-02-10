@@ -1,8 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
-#include <string.h>
-
 #include "permutations.h"
 
 // Dummy callback for benchmarking to avoid I/O overhead
