@@ -25,7 +25,7 @@ size_t pool_get_peak_memory();    // Получение пикового исп�
 
 void generate_permutations(permutation_algorithm_t algo,
                            int arr[], int n,
-                           permutation_callback_t callback);
+                           void (*callback)(int[], int));
 
 
 int compare_ints(const void* a, const void* b); //Функция для qsort

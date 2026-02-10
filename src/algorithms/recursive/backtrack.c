@@ -20,10 +20,11 @@ static void backtrack_helper(int arr[], int n, bool used[], int current[], int d
     }
 }
 
-void permutations_backtrack(int arr[], int n, memory_pool_t* pool, void (*callback)(int[], int)) {
+void permutations_backtrack(int arr[], int n, void (*callback)(int[], int)) {
     if (n <= 0 || arr == NULL) return;
     if (n == 1){  callback(arr, n); return;} 
 
+    memory_pool_t* pool;
     size_t initial_offset = pool->offset;
 
     bool* used = (bool*)pool_alloc(n * sizeof(bool));

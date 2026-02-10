@@ -21,9 +21,10 @@ static void multiset_helper(int arr[], int n, bool used[], int current[], int de
     }
 }
 
-void multiset_permutations(int arr[], int n, memory_pool_t* pool, void (*callback)(int[], int)) {
+void multiset_permutations(int arr[], int n, void (*callback)(int[], int)) {
     if (n <= 0 || arr == NULL) return;
     
+    memory_pool_t* pool;
     size_t initial_offset = pool->offset;
 
     int* sorted_arr = (int*)pool_alloc(n * sizeof(int));

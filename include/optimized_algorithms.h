@@ -30,12 +30,12 @@ typedef struct {
 
 
 // Оптимизированные алгоритмы
-void permutations_johnson_trotter_opt(int arr[], int n, perm_callback_t callback);
-void permutations_heap_opt(int arr[], int n, perm_callback_t callback);
-void permutations_minimal_change_opt(int arr[], int n, perm_callback_t callback);
-void permutations_cycle_leader_opt(int arr[], int n, perm_callback_t callback);
-void permutations_binary_masks_opt(int arr[], int n, perm_callback_t callback);
-void permutations_hybrid_opt(int arr[], int n, perm_callback_t callback);
+void permutations_johnson_trotter_opt(int arr[], int n, void (*callback)(int[], int));
+void permutations_heap_opt(int arr[], int n, void (*callback)(int[], int));
+void permutations_minimal_change_opt(int arr[], int n, void (*callback)(int[], int));
+void permutations_cycle_leader_opt(int arr[], int n, void (*callback)(int[], int));
+void permutations_binary_masks_opt(int arr[], int n, void (*callback)(int[], int));
+void permutations_hybrid_opt(int arr[], int n, void (*callback)(int[], int));
 
 // Конфигурация
 void set_algorithm_config(const AlgorithmConfig* config);

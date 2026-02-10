@@ -25,12 +25,12 @@ static void constraint_helper(int arr[], int n, bool used[], int current[], int 
 }
 
 void permutations_with_constraints(int arr[], int n,
-                                    memory_pool_t* pool,
                                     bool (*constraint)(int[], int, int, void*),
                                     void* constraint_data,
                                     void (*callback)(int[], int)) {
     if (n <= 0 || arr == NULL) return;
 
+    memory_pool_t* pool;
     size_t initial_offset = pool->offset;
 
     bool* used = (bool*)pool_alloc(n * sizeof(bool));
