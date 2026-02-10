@@ -1,41 +1,51 @@
-/* Core project types and utilities used across the library. */
 #ifndef PERMUTATION_CORE_H
 #define PERMUTATION_CORE_H
 
-#include <stddef.h>
-#include <stdint.h>
+#include "permutation_types.h"
 
-/* Simple fixed-size block memory pool.
- * Thread-unsafe, intended for internal use where many small
- * fixed-size allocations are required and freed frequently.
- */
-typedef struct memory_pool {
-	size_t block_size;   /* size of each block (aligned) */
-	size_t block_count;  /* total number of blocks */
-	void *buffer;        /* contiguous buffer holding all blocks */
-	void *free_list;     /* singly-linked list of free blocks */
-} memory_pool_t;
+// БЕНЧМАРКИНГ
+benchmark_result_t benchmark_algorithm(permutation_algorithm_t algo, 
+                                       int arr[], int n, 
+                                       int iterations);
 
-/* Initialize a memory pool.
- * - pool: pointer to memory_pool_t (caller-owned)
- * - block_size: requested size for each block in bytes
- * - block_count: number of blocks to allocate
- * Returns 0 on success, non-zero on failure.
- */
-int memory_pool_init(memory_pool_t *pool, size_t block_size, size_t block_count);
+typedef struct permutation_iterator permutation_iterator_t;
 
-/* Allocate a block from the pool. Returns NULL if pool is exhausted. */
-void *memory_pool_alloc(memory_pool_t *pool);
 
-/* Return a previously allocated block to the pool. ptr must be one
- * previously returned by memory_pool_alloc from the same pool.
- */
-void memory_pool_free(memory_pool_t *pool, void *ptr);
+// ИТЕРАТОР
+permutation_iterator_t* iterator_create(permutation_algorithm_t algo, int arr[], int n);
+int* iterator_next(permutation_iterator_t* iter);
+void iterator_destroy(permutation_iterator_t* iter);
 
-/* Release internal resources held by the pool. Leaves `pool` in a
- * zeroed/empty state.
- */
-void memory_pool_destroy(memory_pool_t *pool);
 
-#endif /* PERMUTATION_CORE_H */
+// АДАПТИВНЫЙ ВЫБОР АЛГОРИТМА
+typedef struct {
+    int max_memory_mb;     
+    bool require_order;     
+    int time_limit_ms;      
+} constraint_set_t;
 
+// Лучший алгоритм под условия
+permutation_algorithm_t select_optimal_algorithm(int n,
+                                                 constraint_set_t* constraints);
+
+// Запуск генерации с авто-выбором
+void generate_permutations_adaptive(int arr[], int n,
+                                    constraint_set_t* constraints,
+                                    void (*callback)(int perm[], int n));
+
+
+// ЮНИТ-ТЕСТЫ
+bool core_verify_algorithm(permutation_algorithm_t algo, int n);
+
+
+// ВИЗУАЛИЗАЦИЯ
+typedef void (*step_callback_t)(const char* description, 
+                                int current_perm[], 
+                                int n, 
+                                int step_number);
+
+void visualize_algorithm(permutation_algorithm_t algo,
+                         int arr[], int n,
+                         step_callback_t step_cb);
+
+#endif

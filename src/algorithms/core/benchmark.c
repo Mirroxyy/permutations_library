@@ -1,11 +1,13 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include "../../include/permutations.h"
+#include "permutations.h"         
+
 
 static unsigned long long g_counter = 0;
 
-// Callback для подсчета количества перестановок (без вывода)
+// Callback для подсчета количества перестановок
 void counter_callback(int perm[], int n) {
     (void)perm;
     (void)n;
@@ -34,13 +36,15 @@ benchmark_result_t benchmark_algorithm(permutation_algorithm_t algo,
                                        int arr[], int n, 
                                        int iterations) {
     benchmark_result_t result;
+
     double total_time = 0.0;
+    size_t max_peak_memory = 0
     
-    // Сохраняем имя алгоритма
     strncpy(result.algorithm_name, get_algo_name(algo), 49);
     result.algorithm_name[49] = '\0';
 
     for (int i = 0; i < iterations; i++) {
+        pool_reset();
         g_counter = 0;
 
         clock_t start = clock();
@@ -50,10 +54,16 @@ benchmark_result_t benchmark_algorithm(permutation_algorithm_t algo,
         clock_t end = clock();
 
         total_time += (double)(end - start) / CLOCKS_PER_SEC;
+
+        size_t current_peak = pool_get_peak_memory();
+        if (current_peak > max_peak_memory) {
+            max_peak_memory = current_peak;
+        }
     }
 
     result.time_seconds = total_time / iterations; // Среднее время
     result.count = g_counter;
+    result.memory_peak = max_peak_memory;
 
     return result;
 }
