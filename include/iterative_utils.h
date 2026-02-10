@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-void swap(int *a, int *b);
+//void swap(int *a, int *b);
 void bubble_sort(int arr[], int size);
 void copyARR(int arr[], int copy[], int n);
 void reverseTail(int arr[], int start, int end);

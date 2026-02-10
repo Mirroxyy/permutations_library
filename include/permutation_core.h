@@ -1,7 +1,6 @@
 #ifndef PERMUTATION_CORE_H
 #define PERMUTATION_CORE_H
 
-#include "permutation_types.h"
 
 // БЕНЧМАРКИНГ
 benchmark_result_t benchmark_algorithm(permutation_algorithm_t algo, 
