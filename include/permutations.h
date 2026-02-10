@@ -13,6 +13,13 @@
 #include "optimized_algorithms.h"
 
 // Пул памяти 
+typedef struct {
+    uint8_t* start_ptr;
+    size_t capacity;
+    size_t offset;
+    size_t peak_usage;
+} memory_pool_t;
+
 void pool_init(size_t max_bytes); // Инициализация пула с заданным размером
 void* pool_alloc(size_t size);    // Выделение памяти из пула
 void pool_reset();                // Сброс пула (освобождение всех выделенных блоков)

@@ -4,13 +4,6 @@
 
 #include "permutations.h"
 
-typedef struct {
-    uint8_t* start_ptr;
-    size_t capacity;
-    size_t offset;
-    size_t peak_usage;
-} memory_pool_t;
-
 static memory_pool_t g_pool = {NULL, 0, 0, 0};
 
 void pool_init(size_t max_bytes) {
