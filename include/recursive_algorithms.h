@@ -24,6 +24,15 @@ void permutations_with_constraints(int arr[], int n,
 bool pos_constraint(int partial[], int k, int next, void* data);
 bool rel_constraint(int partial[], int k, int next, void* data);
 
+typedef struct //Структура для правил ограничений
+{
+    int forbidden_map[10][2];
+
+    int must_follow[2];
+
+} ConstraintRules;
+ 
+
 //Рекурсивный алгоритм перестановки с отслеживанием повторения
 void multiset_permutations(int arr[], int n, void (*callback)(int[], int));
 
