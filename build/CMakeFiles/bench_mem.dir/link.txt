@@ -1,1 +1,0 @@
-/usr/bin/cc  -Wall -Wextra -O2 -Wl,--dependency-file=CMakeFiles/bench_mem.dir/link.d CMakeFiles/bench_mem.dir/benchmarks/memory_benchmark.c.o -o bench_mem  libperm_lib.a

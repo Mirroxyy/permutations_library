@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\core\adaptive.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\core\benchmark.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\core\iterator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\core\testing.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\core\unified_interface.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\core\visualization.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\iterative\factorial_system.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\iterative\inversion_table.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\iterative\narayana.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\iterative\plus_one.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\iterative\reverse_narayana.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\optimized\binary_masks.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\optimized\cycle_leader.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\optimized\heap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\optimized\johnson_trotter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\optimized\minimal_change.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\optimized\pseudo_lexicographic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\recursive\backtrack.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\recursive\constraints.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\recursive\lexicographic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\recursive\multiset.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects_c\project_2\permutations_library\src\algorithms\recursive\recursive_swap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\projects_c\project_2\permutations_library\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4392883D-8E17-3200-878C-D55990E72167}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -36,5 +36,8 @@ void request_stop();
 
 void print_perm(int perm[], int n); //Функция для вывода массива
 
+
+void swap(int* a, int* b);
+
 #endif
 

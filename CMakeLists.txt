@@ -2,7 +2,15 @@ cmake_minimum_required(VERSION 3.10)
 project(PermutationsProject C)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -O2") # Включаем оптимизацию и предупреждения
+# Определение флагов компиляции в зависимости от компилятора
+if(MSVC)
+    # Флаги для Visual Studio (Windows)
+    # /W4 - высокий уровень предупреждений (аналог -Wall -Wextra)
+    add_compile_options(/W4)
+else()
+    # Флаги для GCC/Clang (Linux, macOS, MinGW)
+    add_compile_options(-Wall -Wextra -pedantic)
+endif()
 
 # ==========================================
 # 1. СОБИРАЕМ БИБЛИОТЕКУ (ЯДРО)

@@ -1,1 +1,0 @@
-/usr/bin/cc  -Wall -Wextra -O2 -Wl,--dependency-file=CMakeFiles/bench_perf.dir/link.d CMakeFiles/bench_perf.dir/benchmarks/performance_benchmark.c.o -o bench_perf  libperm_lib.a
