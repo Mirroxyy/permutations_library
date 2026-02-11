@@ -1,7 +1,7 @@
 #include "permutations.h"
 
 // Оптимизированная версия алгоритма Джонсона-Троттера
-void permutations_johnson_trotter_opt(int arr[], int n,  void (*callback)(int[], int)) {
+void permutations_johnson_trotter(int arr[], int n,  void (*callback)(int[], int)) {
     if (n <= 0) return;
     
     // Используем пул памяти для оптимизации

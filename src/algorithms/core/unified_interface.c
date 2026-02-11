@@ -2,7 +2,7 @@
 
 void generate_permutations(permutation_algorithm_t algo,
                             int arr[], int n,
-                            permutation_callback_t callback) {
+                            void (*callback)(int[], int)) {
                                 
     if (arr == NULL){
         printf("Error: Передан пустой указатель на массив!\n");

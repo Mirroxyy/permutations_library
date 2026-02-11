@@ -34,7 +34,7 @@ int compare_ints(const void* a, const void* b); //Функция для qsort
 void reset_stop_flag();
 void request_stop();
 
-void print_perm(int perm[], int n) //Функция для вывода массива
+void print_perm(int perm[], int n); //Функция для вывода массива
 
 #endif
 

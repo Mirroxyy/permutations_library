@@ -1,0 +1,7 @@
+/home/grechka/Проект 2/permutations_library/build/CMakeFiles/perm_lib.dir
+/home/grechka/Проект 2/permutations_library/build/CMakeFiles/app.dir
+/home/grechka/Проект 2/permutations_library/build/CMakeFiles/bench_compare.dir
+/home/grechka/Проект 2/permutations_library/build/CMakeFiles/bench_mem.dir
+/home/grechka/Проект 2/permutations_library/build/CMakeFiles/bench_perf.dir
+/home/grechka/Проект 2/permutations_library/build/CMakeFiles/edit_cache.dir
+/home/grechka/Проект 2/permutations_library/build/CMakeFiles/rebuild_cache.dir

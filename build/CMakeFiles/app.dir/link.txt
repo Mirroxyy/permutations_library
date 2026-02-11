@@ -1,0 +1,1 @@
+/usr/bin/cc  -Wall -Wextra -O2 -Wl,--dependency-file=CMakeFiles/app.dir/link.d CMakeFiles/app.dir/src/main.c.o -o app  libperm_lib.a

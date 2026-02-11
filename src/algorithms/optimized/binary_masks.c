@@ -17,7 +17,7 @@ static void generate_masks(int pos, uint32_t mask, int arr[], int n,
 }
 
 // Оптимизированная версия алгоритма двоичных масок
-void permutations_binary_masks_opt(int arr[], int n,  void (*callback)(int[], int)) {
+void permutations_binary_masks(int arr[], int n,  void (*callback)(int[], int)) {
     if (n > BIT_MASK_LIMIT|| n <= 0) return;
     
     int *current = (int*)pool_alloc(n * sizeof(int));

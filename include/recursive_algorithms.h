@@ -8,7 +8,7 @@
 #include <string.h>
 
 //Стандартный Backtrack алгоритм
-void permutations_backtrack(int arr[], int n, void (*callback)(int[], int))
+void permutations_backtrack(int arr[], int n, void (*callback)(int[], int));
 
 //Рекурсивный алгоритм перестановки с помощью обменов
 void permutations_recursive_swap(int arr[], int n, void (*callback)(int[], int));

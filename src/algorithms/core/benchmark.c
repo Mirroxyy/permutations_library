@@ -1,4 +1,4 @@
-#include "permutations.h"         
+#include "../include/permutations.h"         
 
 
 static unsigned long long g_counter = 0;
@@ -34,7 +34,7 @@ benchmark_result_t benchmark_algorithm(permutation_algorithm_t algo,
     benchmark_result_t result;
 
     double total_time = 0.0;
-    size_t max_peak_memory = 0
+    size_t max_peak_memory = 0;
     
     strncpy(result.algorithm_name, get_algo_name(algo), 49);
     result.algorithm_name[49] = '\0';

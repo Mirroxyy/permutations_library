@@ -1,7 +1,7 @@
 #include "permutations.h"
 
 // Оптимизированная версия алгоритма Хипа
-void permutations_heap_opt(int arr[], int n,  void (*callback)(int[], int)) {
+void permutations_heap(int arr[], int n,  void (*callback)(int[], int)) {
     if (n <= 0) return;
     
     int *perm = (int*)pool_alloc(n * sizeof(int));

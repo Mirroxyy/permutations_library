@@ -24,12 +24,13 @@ typedef enum {
 
 // Структура для хранения результатов бенчмарков
 typedef struct {
-    double time_seconds;      // Время выполнения
-    unsigned long count;      // Сколько перестановок успели
-    char algorithm_name[50];  // Имя алгоритма
-    size_t memory_peak;       // <--- ДОБАВЬ ЭТО (раз уж мы сделали пул памяти!)
+    unsigned long long permutations_count; // Было пропущено
+    double perms_per_second;               // Было пропущено
+    char algorithm_name[50];        // <--- ДОБАВЛЕНО (для названия алгоритма)
+    double time_seconds;
+    unsigned long long count;       // <--- ДОБАВЛЕНО (счетчик перестановок)
+    unsigned long memory_peak;
 } benchmark_result_t;
-
 /*
 // Интерфейс для генерации перестановок с помощью различных алгоритмов
 typedef void (*permutation_callback_t)(int perm[], int n);

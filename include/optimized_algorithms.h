@@ -6,6 +6,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#define BIT_MASK_LIMIT 32
+
 /*
 // Типы данных
 typedef void (*perm_callback_t)(int perm[], int n);
@@ -30,12 +32,12 @@ typedef struct {
 
 
 // Оптимизированные алгоритмы
-void permutations_johnson_trotter_opt(int arr[], int n, void (*callback)(int[], int));
-void permutations_heap_opt(int arr[], int n, void (*callback)(int[], int));
-void permutations_minimal_change_opt(int arr[], int n, void (*callback)(int[], int));
-void permutations_cycle_leader_opt(int arr[], int n, void (*callback)(int[], int));
-void permutations_binary_masks_opt(int arr[], int n, void (*callback)(int[], int));
-void permutations_hybrid_opt(int arr[], int n, void (*callback)(int[], int));
+void permutations_johnson_trotter(int arr[], int n, void (*callback)(int[], int));
+void permutations_heap(int arr[], int n, void (*callback)(int[], int));
+void permutations_minimal_change(int arr[], int n, void (*callback)(int[], int));
+void permutations_cycle_leader(int arr[], int n, void (*callback)(int[], int));
+void permutations_binary_masks(int arr[], int n, void (*callback)(int[], int));
+void permutations_hybrid(int arr[], int n, void (*callback)(int[], int));
 
 // Конфигурация
 void set_algorithm_config(const AlgorithmConfig* config);
