@@ -1,6 +1,6 @@
 #include "permutations.h"
 
-// Рекурсивная функция для битовых масок
+// Recursive function for bit masks
 static void generate_masks(int pos, uint32_t mask, int arr[], int n, 
                           int *current,  void (*callback)(int[], int)) {
     if (pos == n) {
@@ -16,7 +16,7 @@ static void generate_masks(int pos, uint32_t mask, int arr[], int n,
     }
 }
 
-// Оптимизированная версия алгоритма двоичных масок
+// Optimized version of the binary mask algorithm
 void permutations_binary_masks(int arr[], int n,  void (*callback)(int[], int)) {
     if (n > BIT_MASK_LIMIT|| n <= 0) return;
     

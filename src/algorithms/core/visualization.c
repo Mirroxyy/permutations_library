@@ -1,115 +1,97 @@
 #include "permutations.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-static void dummy_callback(int p[], int n) {
-    (void)p; (void)n; 
+// Глобальные переменные для построения графа DOT
+static FILE* dot_out = NULL;
+static char prev_node_id[256] = "";
+
+/**
+ * Вспомогательная функция для создания ID узла на основе массива
+ * [1, 2, 3] -> "p123"
+ */
+static void get_node_id(int arr[], int n, char* buf) {
+    sprintf(buf, "p");
+    for (int i = 0; i < n; i++) {
+        char temp[16];
+        sprintf(temp, "%d", arr[i]);
+        strcat(buf, temp);
+    }
 }
 
-benchmark_result_t benchmark_algorithm(permutation_algorithm_t algo, 
-                                       int arr[], int n, 
-                                       int iterations) {
-    benchmark_result_t res = {0};
-    
-    // Защита от дурака
-    if (iterations < 1) iterations = 1;
+/**
+ * Колбэк, который не просто печатает, а пишет связи в DOT-файл
+ */
+static void dot_step_callback(int perm[], int n) {
+    if (!dot_out) return;
 
-    // Выделяем память под временный массив
-    int* temp_arr = (int*)malloc(n * sizeof(int));
-    if (!temp_arr) return res;
+    char current_node_id[256];
+    get_node_id(perm, n, current_node_id);
 
-    double total_time_seconds = 0;
-    
-    // === ЦИКЛ ПОВТОРЕНИЙ (Твой for) ===
-    for (int i = 0; i < iterations; i++) {
-        
-        // 1. Сбрасываем массив в исходное состояние перед каждым прогоном!
-        // (Используем memcpy, это быстрее цикла)
-        memcpy(temp_arr, arr, n * sizeof(int));
-        
-        // 2. Замеряем время
-        clock_t start = clock();
+    // Рисуем узел
+    fprintf(dot_out, "    %s [label=\"", current_node_id);
+    for (int i = 0; i < n; i++) fprintf(dot_out, "%d%s", perm[i], (i == n - 1) ? "" : " ");
+    fprintf(dot_out, "\"];\n");
 
-        switch(algo) {
-            case ALGO_BACKTRACK:
-                permutations_backtrack(temp_arr, n, dummy_callback);
-                break;
-            case ALGO_RECURSIVE_SWAP:
-                permutations_recursive_swap(temp_arr, n, dummy_callback);
-                break;
-            case ALGO_NARAYANA:
-                permutation_narayana(temp_arr, n, dummy_callback);
-                break;
-            case ALGO_FACTORIAL_SYSTEM:
-                permutations_factorial_system(temp_arr, n, dummy_callback);
-                break;
-            case ALGO_JOHNSON_TROTTER:
-                permutations_johnson_trotter(temp_arr, n, dummy_callback);
-                break;
-            case ALGO_HEAP:
-                permutations_heap(temp_arr, n, dummy_callback);
-                break;
-            default:
-                permutation_narayana(temp_arr, n, dummy_callback);
-                break;
-        }
-
-        clock_t end = clock();
-        
-        // Суммируем время
-        total_time_seconds += (double)(end - start) / CLOCKS_PER_SEC;
+    // Рисуем ребро от предыдущей перестановки
+    if (strlen(prev_node_id) > 0) {
+        fprintf(dot_out, "    %s -> %s;\n", prev_node_id, current_node_id);
     }
-    // === КОНЕЦ ЦИКЛА ===
 
+    strcpy(prev_node_id, current_node_id);
+}
+
+void visualize_algorithm_to_png(permutation_algorithm_t algo, int n) {
+    if (n <= 0) return;
+
+    // Подготавливаем массив для генерации
+    int* temp_arr = malloc(n * sizeof(int));
+    for (int i = 0; i < n; i++) temp_arr[i] = i + 1;
+
+    const char* dot_filename = "permutation_graph.dot";
+    dot_out = fopen(dot_filename, "w");
+    if (!dot_out) {
+        free(temp_arr);
+        return;
+    }
+
+    fprintf(dot_out, "digraph G {\n    rankdir=LR;\n");
+    prev_node_id[0] = '\0';
+
+    // Запускаем генерацию с нашим DOT-колбэком
+    generate_permutations(algo, temp_arr, n, dot_step_callback);
+
+    fprintf(dot_out, "}\n");
+    fclose(dot_out);
     free(temp_arr);
-
-    // Заполняем результаты
-    res.time_seconds = total_time_seconds / iterations; // Среднее время
-    res.permutations_count = factorial(n); 
     
-    if (res.time_seconds > 0.000000001) {
-        res.perms_per_second = res.permutations_count / res.time_seconds;
-    } else {
-        res.perms_per_second = 0;
-    }
+    // 1. Конвертация в PNG
+    system("dot -Tpng permutation_graph.dot -o graph.png");
 
-    return res;
+    // 2. Автоматическое открытие картинки
+    printf("Opening graph.png...\n");
+
+    #ifdef __linux__
+        system("xdg-open graph.png &"); // Для Linux (твоя система)
+    #elif _WIN32
+        system("start graph.png");      // Для Windows
+    #elif __APPLE__
+        system("open graph.png");       // Для macOS
+    #endif
 }
 
-// --- 2. ADAPTIVE SELECTION ---
-permutation_algorithm_t select_optimal_algorithm(int n, constraint_set_t* constraints) {
-    if (constraints && constraints->require_order) return ALGO_NARAYANA;
-    if (n <= 5) return ALGO_BACKTRACK;
-    if (n > 5) return ALGO_HEAP; 
-    return ALGO_NARAYANA; 
-}
-
-void generate_permutations_adaptive(int arr[], int n,
-                                    constraint_set_t* constraints,
-                                    void (*callback)(int perm[], int n)) {
-    
-    permutation_algorithm_t best_algo = select_optimal_algorithm(n, constraints);
-    
-    switch(best_algo) {
-        case ALGO_BACKTRACK: permutations_backtrack(arr, n, callback); break;
-        case ALGO_RECURSIVE_SWAP: permutations_recursive_swap(arr, n, callback); break;
-        case ALGO_NARAYANA: permutation_narayana(arr, n, callback); break;
-        case ALGO_FACTORIAL_SYSTEM: permutations_factorial_system(arr, n, callback); break;
-        case ALGO_JOHNSON_TROTTER: permutations_johnson_trotter(arr, n, callback); break;
-        case ALGO_HEAP: permutations_heap(arr, n, callback); break;
-        default: permutation_narayana(arr, n, callback);
-    }
-}
-
-// --- 3. UNIT TESTING ---
 bool core_verify_algorithm(permutation_algorithm_t algo, int n) {
-    unsigned long long expected = factorial(n);
-    
-    int* test_arr = (int*)malloc(n * sizeof(int));
-    for(int i=0; i<n; i++) test_arr[i] = i+1;
+    unsigned long long expected = 1;
+    for (int i = 1; i <= n; i++) expected *= i;
 
+    int* test_arr = malloc(n * sizeof(int));
+    if (!test_arr) return false;
+    for (int i = 0; i < n; i++) test_arr[i] = i + 1;
+
+  
     benchmark_result_t res = benchmark_algorithm(algo, test_arr, n, 1);
-    
+
     free(test_arr);
-    // Теперь поле permutations_count видно
-    return res.permutations_count == expected;
-} 
-// Убедись, что тут нет лишних букв после закрывающей скобки!
+    return res.count == expected;
+}

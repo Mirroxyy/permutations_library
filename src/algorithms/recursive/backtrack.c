@@ -24,8 +24,6 @@ void permutations_backtrack(int arr[], int n, void (*callback)(int[], int)) {
     if (n <= 0 || arr == NULL) return;
     if (n == 1){  callback(arr, n); return;} 
 
-    memory_pool_t* pool;
-    size_t initial_offset = pool->offset;
 
     bool* used = (bool*)pool_alloc(n * sizeof(bool));
     int* current = (int*)pool_alloc(n * sizeof(int));
@@ -35,5 +33,4 @@ void permutations_backtrack(int arr[], int n, void (*callback)(int[], int)) {
     reset_stop_flag();
     backtrack_helper(arr, n, used, current, 0, callback);
 
-    pool->offset = initial_offset;
 }

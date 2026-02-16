@@ -15,6 +15,4 @@ void permutations_recursive_lexicographic(int arr[], int n, void (*callback)(int
 
     // 2. Запускаем стандартный бэктрекинг
     permutations_backtrack(sorted_arr, n, callback);
-
-    pool->offset = initial_offset;
 }

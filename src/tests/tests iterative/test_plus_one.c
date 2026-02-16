@@ -118,7 +118,9 @@ void test_plus_one_algorithm() {
 
     printf("\nTest 5: permutations_plus_one n=0\n");
 
-    int arr5[] = {};
+    int* arr5 = NULL;
+    int n5 = 0;
+
 
     printf("Empty array, expecting one callback\n");
 

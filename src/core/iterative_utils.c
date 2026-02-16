@@ -1,10 +1,36 @@
-#include "iterative_utils.h"
+#include "permutations.h"
 
-/*void swap(int *a,int *b) {
-    int temp = *a;
+void printARR(int* arr, int n) {
+    printf("[ ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("]\n");
+}
+
+void swap(int* a, int* b) {
+    int t = *a;
     *a = *b;
-    *b = temp;
-}*/
+    *b = t;
+}
+
+static bool stop_flag = false;
+
+void reset_stop_flag() {
+    stop_flag = false;
+}
+
+void request_stop() {
+    stop_flag = true;
+}
+
+
+bool is_valid_inversion_table(int* inv, int n) {
+    for (int i = 0; i < n; i++) {
+        if (inv[i] < 0 || inv[i] > (n - i - 1))
+            return false;
+    }
+    return true;
+}
 
 void bubble_sort(int arr[], int size) {
     for (int i = 0; i < size - 1; i++)
@@ -33,15 +59,6 @@ long factorial(int n) {
     return result;
 }
 
-
-/*void printARR(int arr[], int n){
-    for (int h = 0; h < n; h++) 
-        printf("%d ", arr[h]);
-
-    printf("\n");
+int compare_ints(const void* a, const void* b) {
+    return (*(int*)a - *(int*)b);
 }
-
-void print_callback(int perm[], int n) {
-    printARR(perm, n);
-}
-*/

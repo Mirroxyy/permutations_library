@@ -22,17 +22,4 @@ typedef enum {
     ALGO_PSEUDO_LEXICOGRAPHIC
 } permutation_algorithm_t;
 
-// Структура для хранения результатов бенчмарков
-typedef struct {
-    unsigned long long permutations_count; // Было пропущено
-    double perms_per_second;               // Было пропущено
-    char algorithm_name[50];        // <--- ДОБАВЛЕНО (для названия алгоритма)
-    double time_seconds;
-    unsigned long long count;       // <--- ДОБАВЛЕНО (счетчик перестановок)
-    unsigned long memory_peak;
-} benchmark_result_t;
-/*
-// Интерфейс для генерации перестановок с помощью различных алгоритмов
-typedef void (*permutation_callback_t)(int perm[], int n);
-*/
 #endif

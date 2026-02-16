@@ -123,7 +123,9 @@ void test_next_permutation() {
     // Test 7: Empty array
     printf("\nTest 7: Empty array (n=0)\n");
     printf("Empty array, n=0\n");
-    int arr7[] = {};
+    int* arr7 = NULL;
+    int n7 = 0;
+
     has_next = next_permutation_narayana(arr7, 0);
     printf("Function result: %s\n", has_next ? "true" : "false");
     assert(has_next == false);

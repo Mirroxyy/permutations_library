@@ -87,7 +87,9 @@ void test_reverse_narayana() {
 
     printf("\nTest 5: permutations_reverse_narayana n=0\n");
 
-    int arr5[] = {};
+    int* arr5 = NULL;
+    int n5 = 0;
+
 
     printf("Empty array — expect one callback\n");
 

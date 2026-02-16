@@ -1,10 +1,10 @@
 #include "permutations.h"
 
-// Оптимизированная версия алгоритма Джонсона-Троттера
+// Optimized version of the Johnson-Trotter algorithm
 void permutations_johnson_trotter(int arr[], int n,  void (*callback)(int[], int)) {
     if (n <= 0) return;
     
-    // Используем пул памяти для оптимизации
+   // Use memory pool for optimization
     int *perm = (int*)pool_alloc(n * sizeof(int));
     int *pos = (int*)pool_alloc(n * sizeof(int));
     char *dir = (char*)pool_alloc(n * sizeof(char));
@@ -13,7 +13,7 @@ void permutations_johnson_trotter(int arr[], int n,  void (*callback)(int[], int
         return;
     }
     
-    // Инициализация
+    // Initialization
     for (int i = 0; i < n; i++) {
         perm[i] = arr[i];
         pos[arr[i] - 1] = i;
@@ -23,11 +23,11 @@ void permutations_johnson_trotter(int arr[], int n,  void (*callback)(int[], int
     callback(perm, n);
     
     while (true) {
-        // Поиск наибольшего подвижного элемента
+        // Finding the largest movable element
         int max_mobile = -1;
         int max_mobile_pos = -1;
         
-        for (int i = n-1; i >= 0; i--) { // Ищем с конца для оптимизации
+        for (int i = n-1; i >= 0; i--) { // Search from the end for optimization
             int p = pos[i];
             int neighbor = p + dir[p];
             
@@ -41,7 +41,7 @@ void permutations_johnson_trotter(int arr[], int n,  void (*callback)(int[], int
         
         if (max_mobile_pos == -1) break;
         
-        // Обмен с соседом
+        // Exchange with a neighbor
         int neighbor_pos = max_mobile_pos + dir[max_mobile_pos];
         int mobile_val = perm[max_mobile_pos];
         int neighbor_val = perm[neighbor_pos];
@@ -50,7 +50,7 @@ void permutations_johnson_trotter(int arr[], int n,  void (*callback)(int[], int
         pos[mobile_val - 1] = neighbor_pos;
         pos[neighbor_val - 1] = max_mobile_pos;
         
-        // Изменение направлений
+        // Change directions
         for (int i = max_mobile-1; i < n; i++) {
             dir[pos[i]] = -dir[pos[i]];
         }

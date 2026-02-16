@@ -8,11 +8,6 @@
 
 #define BIT_MASK_LIMIT 32
 
-/*
-// Типы данных
-typedef void (*perm_callback_t)(int perm[], int n);
-*/
-
 typedef struct {
     bool use_cache_optimization;
     bool use_bit_operations;

@@ -1,28 +1,37 @@
 #include "permutations.h"
 
-
-static bool stub_narayana_next(int* arr, int n) {
-    (void)arr; (void)n;
-    return false;  // Студент 2 реализует это
-}
-
-static bool stub_heap_next(int* arr, int n, int* c, int* i) {
-    (void)arr; (void)n; (void)c; (void)i;
-    return false; // Студент 3 реализует это
-}
-
 struct permutation_iterator {
-    int* current_perm;      // Текущая перестановка
-    int* aux_arr;           // Вспомогательный массив (c[] для Heap)
+    int* current_perm;      // Current permutation
+    int* aux_arr;           // Auxiliary array (c[] for Heap)
     int n;
-    int state_idx;          // Индекс i для Heap
+    int state_idx;          // Index i for Heap
     permutation_algorithm_t algo;
     bool is_first;
     bool finished;
 };
 
+// Helper function for Heap iterator
+static bool heap_next_step(int* arr, int n, int* c, int* i) {
+    while (*i < n) {
+        if (c[*i] < *i) {
+            if (*i & 1) {
+                swap(&arr[c[*i]], &arr[*i]);
+            } else {
+                swap(&arr[0], &arr[*i]);
+            }
+            c[*i] += 1;
+            *i = 0;
+            return true;
+        } else {
+            c[*i] = 0;
+            (*i)++;
+        }
+    }
+    return false;
+}
+
 permutation_iterator_t* iterator_create(permutation_algorithm_t algo, 
-                                           int arr[], int n) {
+                                        int arr[], int n) {
     if (n <= 0 || !arr) return NULL;
 
     if (algo == ALGO_BACKTRACK || algo == ALGO_RECURSIVE_SWAP) {
@@ -54,6 +63,7 @@ permutation_iterator_t* iterator_create(permutation_algorithm_t algo,
             return NULL;
         }
         memset(iter->aux_arr, 0, n * sizeof(int));
+        iter->state_idx = 0;
     }
     
     return iter;
@@ -62,7 +72,6 @@ permutation_iterator_t* iterator_create(permutation_algorithm_t algo,
 int* iterator_next(permutation_iterator_t* iter) {
     if (!iter || iter->finished) return NULL;
 
-    // Первый вызов — возвращаем то, с чего начали
     if (iter->is_first) {
         iter->is_first = false;
         return iter->current_perm;
@@ -70,15 +79,16 @@ int* iterator_next(permutation_iterator_t* iter) {
 
     bool has_next = false;
 
-    // Диспетчер алгоритмов
     switch (iter->algo) {
         case ALGO_NARAYANA:
-            has_next = stub_narayana_next(iter->current_perm, iter->n);
+            has_next = next_permutation_narayana(iter->current_perm, iter->n);
             break;
 
         case ALGO_HEAP:
-            has_next = stub_heap_next(iter->current_perm, iter->n, 
-                                      iter->aux_arr, &iter->state_idx);
+            has_next = heap_next_step(iter->current_perm,
+                                      iter->n,
+                                      iter->aux_arr,
+                                      &iter->state_idx);
             break;
 
         default:

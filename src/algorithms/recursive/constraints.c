@@ -30,9 +30,6 @@ void permutations_with_constraints(int arr[], int n,
                                     void (*callback)(int[], int)) {
     if (n <= 0 || arr == NULL) return;
 
-    memory_pool_t* pool;
-    size_t initial_offset = pool->offset;
-
     bool* used = (bool*)pool_alloc(n * sizeof(bool));
     int* current = (int*)pool_alloc(n * sizeof(int));
 
@@ -40,8 +37,6 @@ void permutations_with_constraints(int arr[], int n,
 
     reset_stop_flag();
     constraint_helper(arr, n, used, current, 0, constraint, constraint_data, callback);
-
-    pool->offset = initial_offset;
 }
 
 // Позиционные (элемент i не может быть на позиции j)

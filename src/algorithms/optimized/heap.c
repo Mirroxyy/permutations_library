@@ -1,6 +1,6 @@
 #include "permutations.h"
 
-// Оптимизированная версия алгоритма Хипа
+// Optimized version of Heap's algorithm
 void permutations_heap(int arr[], int n,  void (*callback)(int[], int)) {
     if (n <= 0) return;
     
@@ -9,7 +9,7 @@ void permutations_heap(int arr[], int n,  void (*callback)(int[], int)) {
     
     if (!perm || !c) return;
     
-    // Быстрое копирование
+    // fast copy
     for (int i = 0; i < n; i++) {
         perm[i] = arr[i];
         c[i] = 0;
@@ -20,7 +20,7 @@ void permutations_heap(int arr[], int n,  void (*callback)(int[], int)) {
     int i = 0;
     while (i < n) {
         if (c[i] < i) {
-            if (i & 1) { // Проверка четности через битовую операцию
+            if (i & 1) { // Checking parity via bit operation
                 SWAP(perm, c[i], i);
             } else {
                 SWAP(perm, 0, i);
