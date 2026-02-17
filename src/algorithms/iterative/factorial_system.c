@@ -13,14 +13,15 @@ void index_to_factorial_digits(long index, int n, int digits[]) {
 void lehmer_to_permutation(int arr[], int n, int digits[], int result[]) {
     int *available = (int*)malloc(n * sizeof(int));
     
-    if (!available) return; // Проверка на ошибку выделения памяти
+    if (!available)
+        return; 
 
     for(int i = 0; i < n; i++)
         available[i] = i;
 
     for(int i = 0; i < n; i++){
         int pos = digits[i];
-        // Важно: available хранит индексы исходного массива arr
+        // Important: available stores the indexes of the original arr array
         result[i] = arr[available[pos]];
 
         // remove used element from available list
@@ -40,7 +41,8 @@ bool permutation_from_index(int arr[], int n, long index, int result[]) {
 
     int *digits = (int*)malloc(n * sizeof(int));
     
-    if (!digits) return false; // Ошибка памяти
+    if (!digits)
+        return false;
 
     index_to_factorial_digits(index, n, digits);
     lehmer_to_permutation(arr, n, digits, result);
@@ -59,7 +61,7 @@ void permutations_factorial_system(int arr[], int n,
     if(!callback || n<=0)
         return;
 
-    // sorted working copy (предполагаем, что pool_alloc возвращает валидный указатель)
+    // sorted working copy (assuming pool_alloc returns a valid pointer)
     int *work = (int*)pool_alloc(n * sizeof(int));
     // buffer for permutation
     int *perm = (int*)pool_alloc(n * sizeof(int));
