@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/performance_benchmark.dir/link.d CMakeFiles/performance_benchmark.dir/benchmarks/performance_benchmark.c.o -o performance_benchmark  libperm_lib.a
