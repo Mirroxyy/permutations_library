@@ -8,7 +8,7 @@
 #include <time.h>
 #include <string.h>
 
-// enum всех алгоритмов
+// enum all algorithms
 typedef enum {
     ALGO_BACKTRACK = 1,
     ALGO_RECURSIVE_SWAP,

@@ -56,6 +56,20 @@ void run_smart_mode(void) {
     generate_permutations_adaptive(arr, n, &c, cb);
 
     printf("\nTotal permutations: %llu\n", g_count);
+
+    printf("Visualize this algorithm? (1=yes, 0=no): ");
+    int vis_choice;
+    scanf("%d", &vis_choice);
+
+    if (vis_choice == 1) {
+        if (n > 5) {
+            printf("N is too large for visualization! Keeping it to N=4.\n");
+            visualize_algorithm_to_png((permutation_algorithm_t)sorted_input, 4);
+    }else {
+        visualize_algorithm_to_png((permutation_algorithm_t)sorted_input, n);
+    }
+}
+
     free(arr);
 }
 

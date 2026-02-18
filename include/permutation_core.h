@@ -2,16 +2,11 @@
 #define PERMUTATION_CORE_H
 
 #include <stdbool.h>
-#include "permutation_types.h"   // если у тебя есть enum permutation_algorithm_t
+#include "permutation_types.h"   
 
-// ------------------------------------------------------------
-// 1. Forward declaration — ДОЛЖНА быть первой!
-// ------------------------------------------------------------
 typedef struct permutation_iterator permutation_iterator_t;
 
-// ------------------------------------------------------------
-// 2. Итератор API
-// ------------------------------------------------------------
+// 2. Iteratir API
 permutation_iterator_t* iterator_create(permutation_algorithm_t algo,
                                         int arr[], int n);
 
@@ -19,9 +14,7 @@ int* iterator_next(permutation_iterator_t* iter);
 
 void iterator_destroy(permutation_iterator_t* iter);
 
-// ------------------------------------------------------------
-// 3. Адаптивный выбор алгоритма
-// ------------------------------------------------------------
+// 3. Adaptive 
 typedef struct {
     int max_memory_mb;
     bool require_order;
@@ -35,18 +28,14 @@ void generate_permutations_adaptive(int arr[], int n,
                                     constraint_set_t* constraints,
                                     void (*callback)(int perm[], int n));
 
-// ------------------------------------------------------------
-// 4. Визуализация
-// ------------------------------------------------------------
+// 4. Visualisation
 typedef void (*step_callback_t)(const char* description,
                                 int current_perm[],
                                 int n);
 
 void visualize_algorithm_to_png(permutation_algorithm_t algo, int n);
 
-// ------------------------------------------------------------
-// 5. Юнит‑тесты
-// ------------------------------------------------------------
+// 5. Unit-tests
 bool core_verify_algorithm(permutation_algorithm_t algo, int n);
 
 #endif
