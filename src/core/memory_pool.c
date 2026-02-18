@@ -25,8 +25,7 @@ void pool_init(size_t max_bytes) {
 void* pool_alloc(size_t size) {
     if (size == 0) return NULL;
 
-    // Memory alignment on an 8-byte boundary (memory alignment)
-    // This is critical to preventing Segmentation Faults on structures and ints
+    // Memory alignment on an 8-byte 
     size_t align = 8;
     size_t padding = 0;
     
@@ -40,13 +39,10 @@ void* pool_alloc(size_t size) {
         return NULL; 
     }
 
-    // Shift offset to the aligned address
     g_pool.offset += padding;
     
-    // We remember the pointer that we will return to the user
     void* ptr = g_pool.start_ptr + g_pool.offset;
     
-    // Reserve memory for the requested size
     g_pool.offset += size;
 
     // Update peak consumption

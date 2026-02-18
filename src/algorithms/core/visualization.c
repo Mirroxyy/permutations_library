@@ -7,10 +7,7 @@
 static FILE* dot_out = NULL;
 static char prev_node_id[256] = "";
 
-/**
- * Helper function for creating a node ID based on the array
- * [1, 2, 3] -> "p123"
- */
+
 static void get_node_id(int arr[], int n, char* buf) {
     sprintf(buf, "p");
     for (int i = 0; i < n; i++) {
@@ -67,15 +64,13 @@ void visualize_algorithm_to_png(permutation_algorithm_t algo, int n) {
     // 1. Convert to PNG
     system("dot -Tpng permutation_graph.dot -o graph.png");
 
-    // 2. Automatically open the image
     printf("Opening graph.png...\n");
 
     #ifdef __linux__
-        system("xdg-open graph.png &"); // For Linux (your system)
+        system("xdg-open graph.png &"); 
     #elif _WIN32
-        system("start graph.png");      // For Windows
-    #elif __APPLE__
-        system("open graph.png");       // For macOS
+        system("start graph.png");      
+        system("open graph.png");      
     #endif
 }
 
